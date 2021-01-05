@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+
+    <script>
+
+      // const man = {
+      //   name: "Вася",
+      //   lastName: "Пушкин",
+      //   age: 30,
+      //   lol() {
+      //     console.log(this.name);
+      //   },
+      // };
+
+      // const woman = {
+      //   name: "Катя",
+      //   lastName: "Иванова",
+      //   age: 25,
+      // };
+
+      // const Logger = {
+      //   info: function (sex) {
+      //     console.log("Имя:", this.name);
+      //     console.log("Фамилия:", this.lastName);
+      //     console.log("Возраст:", this.age);
+      //     console.log("Пол:", sex);
+      //   },
+      // };
+      // let manFunc = Logger.info.bind(man);
+      // manFunc("Мужской");
+
+      // let womanFunc = Logger.info.bind(woman, "Женский");
+      // womanFunc();
+      // man.lol.call(woman);
+      // man.lol.call(woman);
+      // Logger.info.call(man, "Мужской");
+      // Logger.info.call(woman, "Женский");
+
+      // Logger.info.apply(man, ["Мужской"]);
+      // Logger.info.apply(woman, ["Женский"]);
+
+
+/*       let Animal = function (options) {
+        this.name = options.name;
+        this.speed = options.speed;
+
+        // this.voice = function () {
+        //   console.log("The voice = ", this.name);
+        // };
+      };
+      let dog = new Animal({ name: "Dog", speed: 20 });
+
+      Animal.prototype.voice = function () {
+        console.log("The voice = ", this.name);
+      };
+      dog.voice();
+
+      let Cat = function (options) {
+        Animal.apply(this, arguments);
+        this.length = options.length;
+        this.default = 'Значение по умолчанию'
+      };
+
+      // Наследуем от класса Animal
+      Cat.prototype = Object.create(Animal.prototype)
+      Cat.prototype.constructor = Cat
+
+      let catBlack = new Cat({name: "Blackcat", speed: 99, length: 99, color: '#000' })
+      console.log(catBlack)
+
+      // Изменяем прототип для класса Cat
+      Cat.prototype.voice = function (params) {
+        // Добавляем значение прототипа для класса Cat
+        Animal.prototype.voice.apply(this, arguments)
+        console.log('Изменили значение прототипа = ', this.name);
+      } */
+
+      class Animal {
+        // методы класса
+        constructor(options) {
+          this.name = options.name;
+          this.speed = options.speed;
+        }
+        voice() {
+          console.log("The voice = ", this.name);
+        };
+      }
+      let dog = new Animal({ name: "Dog", speed: 20 });
+      dog.voice()
+
+      class Cat extends Animal{
+        constructor(options) {
+          super(options)
+          this.length = options.length;
+          this.default = 'Значение по умолчанию'
+          this.length = options.length
+          this.type = 'Текст по умолчанию'
+        }
+        voice() {
+          // Добавляем значение прототипа для класса Cat
+          super.voice()
+          console.log('А это уже другой прототип = ', this.name)
+        }
+      };
+
+      let catBlack = new Cat({name: "Blackcat", speed: 99, length: 99, color: '#000' })
+
+      Object.prototype.print = function () {
+        console.log('Этот новая глобальная функция', this)
+      }
+
+      catBlack.print()
+    </script>
+  </body>
+</html>

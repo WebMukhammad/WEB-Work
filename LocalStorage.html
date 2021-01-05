@@ -1,0 +1,19 @@
+<script>
+	
+	let person = {
+		name: 'Mukhammad',
+		age: 20,
+		city: 'Makhachkala'
+	}
+
+	localStorage.setItem('person', JSON.stringify(person))
+
+	let localVal = JSON.parse(localStorage.getItem(person))
+
+	localStorage.removeItem(person)
+
+	localStorage.clear()
+
+	window.addEventListener('storage', e => console.log(e))
+
+</script>

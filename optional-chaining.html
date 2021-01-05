@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+  <script>
+    
+    // let user = {
+    //   name : {
+    //     mous: 5
+    //   }
+    // };
+
+    // console.log(user && user.name && user.name.mou);
+
+    // ======================================================================================
+
+    
+    // let user1 = {
+    //   name : {
+    //     mous: 5
+    //   }
+    // };
+
+    // console.log(user1?.name?.mous);
+
+    // ======================================================================================
+
+
+    // let user2 = {
+    //   admin() {
+    //     console.log("I am admin");
+    //   }
+    // }
+
+    // console.log(user2.admin?.()); // I am admin  --- ?.() - это результат самой функции
+
+    // ======================================================================================
+
+
+    // let user3 = {
+    //   firstName: "John"
+    // };
+
+    // let key = "firstName";
+    
+    // alert( 'user3 = ' + user3?.[key] ); // John
+    
+    // delete user3?.name; // delete user.name if user exists
+
+    // ======================================================================================
+
+
+    // let user4 = null; // Imagine, we couldn't authorize the user
+
+    // alert( 'user4 = ' + user4?.[key] ); // undefined
+
+    // ======================================================================================
+
+    // Мы можем использовать ?. для безопасного чтения и удаления, но не записи
+
+
+  </script>
+</body>
+</html>

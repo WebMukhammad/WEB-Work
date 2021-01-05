@@ -1,0 +1,89 @@
+<script>
+
+// Extends
+class Programmer {
+    constructor(name) {
+        this.name = name
+    }
+    code () {
+        console.log(this.name + ' is coding...')
+    }
+}
+
+let prog = new Programmer('Mukhammad')
+// prog.code()
+
+class Frontend extends Programmer {
+    vue () {
+        console.log(this.name + ' is coding in vue.js...')
+    }
+}
+
+let front = new Frontend('Mukhammad')
+
+class Backend extends Programmer {
+    php () {
+        console.log(this.name + ' is coding in php...')
+    }
+}
+let back = new Backend('Jamaj')
+
+class Fullstack extends Programmer {
+    // vue and php ???
+}
+
+
+// Composition
+function createProgrammer (name) {
+    return {
+        name,
+        ...canCode(name)
+    }
+}
+
+function canCode (name) {
+    return {
+        code: () => console.log(name + ' is coding...')
+    }
+}
+
+function frontend (name) {
+    const programmer = createProgrammer(name)
+    return {
+        ...programmer,
+        ...canVue(name)
+    }
+}
+
+function canVue (name) {
+    return {
+        vue: () => console.log(name + ' is coding in vue.js...')
+    }
+}
+
+function createBackend (name) {
+    const programmer = createProgrammer(name)
+    return {
+        canPhp,
+        ...programmer
+    }
+}
+
+function canPhp (name) {
+    return {
+        php: () => console.log(name + ' is coding in php...')
+    }
+}
+
+function createFullstack(name) {
+    const programmer = createProgrammer(name)
+    return {
+        ...programmer,
+        ...canVue(name),
+        ...canPhp(name)
+    }
+}
+
+createFullstack('Mukhammad')
+
+</script>

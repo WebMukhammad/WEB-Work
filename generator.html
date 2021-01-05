@@ -1,0 +1,21 @@
+<script>
+	let i = 0
+	let litObj = {
+	    litFunc(n = 10) {
+	       return { 
+	    		next() {
+	            	return (i < 10) 
+	            	? {value: i++, done: false}
+	            	: {value: undefined, done: true}
+	        	}
+	       }
+	    }    
+	}
+
+	function* litTest() {
+	    yield 1
+	    yield* [1,2,3]
+	    yield 3
+	}
+
+</script>

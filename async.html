@@ -1,0 +1,29 @@
+
+<script>
+
+// Вариант 1
+let promise = ms => new Promise(resolve => setTimeout(() => resolve(), ms))
+
+promise(2000).then(() => console.log(55))
+
+// Вариант 2
+function getFetch() {
+    let promise = () => new Promise(resolve => setTimeout(() => resolve(), 2000))
+
+    promise()
+    .then(() => fetch('https://jsonplaceholder.typicode.com/todos/'))
+    .then(response => response.json())
+    .then(el => console.log(el))
+}
+
+function getFetch()
+
+// Вариант 3
+async function getFetch() {
+    let promise = await fetch('https://jsonplaceholder.typicode.com/todos/')
+    let response = await promise.json()
+    console.log(response)
+}
+
+
+</script>

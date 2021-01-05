@@ -1,0 +1,66 @@
+<script>
+	
+let person = {
+    name: 'Mukhammad',
+    city: 'Makahackala',
+    job: 'frontend',
+    age: '20...'
+}
+
+function func(age, city, ...rest) {
+    console.log(this.name, age, city, ...rest)
+}
+
+// Первый вариант
+function bind(fn, context, ...rest) {
+    return fn.bind(context, ...rest)
+}
+
+// Второй вариант
+function bind(fn, context, ...rest) {
+   return function(...arg) {
+    let quan = Date.now().toString()
+    context[quan] = fn
+    let result = context[quan](...rest, ...arg)
+    delete context[quan]
+    return result
+   }
+}
+
+// Третий способ ES5
+function bind(fn, context) {
+    let args = Array.prototype.slice.call(arguments, 2) // рервый способ
+    // let args = Array.from(arguments).splice(2, 2)    // второй способ
+    return function() {
+    	let args2 = Array.prototype.slice.call(arguments)
+        fn.apply(context, args.concat(args2))   
+   }
+}
+
+bind(func, person, 11, 22)(33, 44)
+
+
+// создание call
+function call (fn, context, ...rest) {
+	const quan = Date.now().toString()
+	context[quan] = fn
+	const result = context[quan](...rest)
+	delete context[quan]
+	return result
+}
+
+call(func, person, 55, 66)
+
+// создание apply
+function apply (fn, context, rest) {
+	const quan = Date.now().toString()
+	context[quan] = fn
+	const result = context[quan](...rest)
+	delete context[quan]
+	return result
+}
+
+apply(func, person, [77, 88, 99])
+
+
+</script>

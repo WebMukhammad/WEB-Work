@@ -1,0 +1,37 @@
+<script>
+	
+	let urlRequest = 'https://jsonplaceholder.typicode.com/users'
+
+	let body = JSON.stringify({
+	  name: "Мухаммад",
+	  surname: "Магомедов"
+	})
+	
+
+	function sendData(method, url, body = null) {
+		return new Promise( (resolve, reject) => {
+			let xhr = new XMLHttpRequest()
+
+			xhr.open(method, url)
+
+			xhr.responseType = 'json'
+
+			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+			xhr.send(body)
+
+			xhr.onload = function() {
+			  if (xhr.status >= 400) {
+			    resolve(`Ошибка ${xhr.status}: ${xhr.statusText}`) // Например, 404: Not Found 
+			  } else {
+			  	resolve(xhr.response) // response -- это ответ сервера
+			  }
+			}			
+		})
+	}
+
+	sendData('POST', urlRequest, body)
+		.then(data => console.log(data))
+		.catch(e => console.error('Пожалуйста, разберитесь с ошибкой', e))
+
+</script>

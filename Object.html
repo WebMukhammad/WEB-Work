@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h2>Смотри в консоль))</h2>
+
+  <script>
+
+    const obj = {
+      name: "John",
+      age: 25,
+      sizes: {
+        height: 182,
+        width: 50
+      },
+      'club': 'Real',
+      ['masiv_' + (5 + 5)]: 'Вычислено в массиве 10'
+    }
+
+    // console.log(obj.club)
+    // console.log(obj['masiv_10'])
+
+
+    //1
+    /* const name = obj.name  // Функция аналогична 
+    const age = obj.age
+    //Аналогична 
+    const {name, age} = obj;
+    console.log(name + age) */
+
+
+    //2
+    /* for (const key in obj) {
+      if (obj.hasOwnProperty(key)) { // чтобы цикл не заходил в методы прототипа
+        console.log(key)
+      }
+    } // Функция аналогична следующему:
+    Object.keys(obj).forEach(el => console.log(el)) */
+      
+
+    //3
+    const objFunc = {
+      keys() {
+        console.log(`Значении у объекта: ${Object.keys(this)}`)
+      },
+
+      values() {
+        Object.keys(this).forEach(el => {
+          console.log(el + ':' + objFunc[el])
+        })
+      }
+    }
+
+    const valObj = objFunc.keys.bind(obj)
+    valObj()
+
+    objFunc.values()
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+<script>
+	// Objects
+	let person = {
+		name: 'Mukhammad',
+		age: 15,
+		job: 'Frontend'
+	}
+
+	let objectProxy = new Proxy(person, {
+		get(target, prop) {
+			if (!(prop in target)) {
+				// prop.split('_').forEach(prop => console.log(target[prop].join(' ')))
+				return prop.split('_').map(el => target[el]).join(' ')
+			} else {
+				console.log(`The value prop ${prop} = ${target[prop]} `)
+			}
+		},
+		set(target, prop, value) {
+			if (!(prop in target)) {
+				throw new Error(`In object not ${prop}`)
+			}
+		},
+		has(target, prop) {
+			return ['name', 'age', 'job'].includes(prop)  //'name' in objectProxy
+		},
+		deleteProperty(target, prop) {
+			delete target[prop]
+			return true
+		}
+	})
+
+	// Functions
+	let log = text => console.log(`Log: ${text}`)
+
+	let funcProxy = new Proxy(log, {
+		apply(target, thisArg, args) {
+			return target.apply(thisArg, args)
+		}
+	})
+
+	// Classes
+	class Person {
+		constructor (name, age) {
+			this.name = name
+			this.age = age
+		}
+	}
+
+	let classProxy = new Proxy(Person, {
+		construct(target, args) {
+			return new target(...args)
+		}
+	})
+
+	let classProxy1 = new classProxy('Mukhammad', 20)
+
+	let fp = (target, defaultVal = "Вводи нормальные свойства, курчак...") => new Proxy(target, {
+		get(t, prop) {
+			return prop in t ? t[prop] : defaultVal
+		}
+	})
+
+	let testFP = fp({name: 'Mukhammad', age: 20})
+
+</script>

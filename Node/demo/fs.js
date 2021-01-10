@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const sharp = require('sharp')
 
 // // fs.mkdir(path.join(__dirname, 'test'), err => {
 // //   if(err) {
@@ -81,27 +80,5 @@ const sharp = require('sharp')
 //     }
 //   })
 // })
-
-fs.readdir(path.join(__dirname, 'img/input'), (err, files) => {
-
-  if (err) throw err
-
-  files.forEach(el => {
-
-    const ext = path.extname(el)?.substr(1)
-    const isImage = ['png', 'jpeg', 'jpg', 'gif', 'tiff', 'bmp', 'webp'].some(el => el === ext)
-
-    if (isImage) {
-      sharp(path.join(__dirname, 'img/input', el))
-      .resize(100, 50)
-      .toFile(path.join(__dirname, 'img/output', el), (err, data) => {
-        if (err) throw err
-      })
-    }
-    
-  })
-})
-
-
 
 
